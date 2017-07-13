@@ -13,7 +13,7 @@ Sample service for Kubernetes created for presentation
 kubectl create -f others/SamplePod.yaml
 ```
 
-1) Checking output:
+2) Checking output:
 
 a) Log in to nginx-container
 
