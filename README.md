@@ -35,3 +35,9 @@ c) Check output of `debian-container`
 curl localhost
 less /usr/share/nginx/html/index.html
 ```
+
+d) Check logs
+
+```
+kubectl logs sample-pod -c nginx-container
+```
