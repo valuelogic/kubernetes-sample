@@ -41,7 +41,7 @@
                 <configuration>
                     <serverId>docker-hub</serverId>
                     <imageName>${docker.user}/k8s-java-sample</imageName>
-                    <dockerDirectory>${project.basedir}/docker</dockerDirectory>
+                    <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>
