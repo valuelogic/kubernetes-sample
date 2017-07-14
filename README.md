@@ -4,9 +4,9 @@ Sample service for Kubernetes created for presentation.
 
 Project structure:
 
-* src: code of microservice with docker build file
-* devops: files related with Kubernetes
-* others: other samples for demo purposes
+* `src`: code of microservice with docker build file
+* `devops`: files related with Kubernetes
+* `others`: other samples for demo purposes
 
 ## Build
 
