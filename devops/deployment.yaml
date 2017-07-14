@@ -11,10 +11,34 @@ spec:
     spec:
       containers:
       - name: sample-app
-        image: mwrona/k8s-java-sample:0.0.1
+        image: mwrona/k8s-java-sample:0.0.2
         imagePullPolicy: IfNotPresent
         #env:
         #- name: SPRING_PROFILES_ACTIVE
         #  value: prod
         ports:
         - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+            #httpHeaders:
+            #  - name: X-Custom-Header
+            #    value: Awesome
+          initialDelaySeconds: 30
+          timeoutSeconds: 1
+          periodSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+            #httpHeaders:
+            #  - name: X-Custom-Header
+            #    value: Awesome
+          initialDelaySeconds: 30
+          timeoutSeconds: 1
+          periodSeconds: 1
+          failureThreshold: 3
+          successThreshold: 1

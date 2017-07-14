@@ -16,18 +16,14 @@ public class PingService {
 
     @GetMapping(path = "/hello")
     public String ping() {
-        if (!healthy) {
-            return String.format("[%s] I'm sick!", id);
-        } else if (!ready) {
-            return String.format("[%s] Dude, I'm busy - leave me alone!", id);
-        } else {
-            return String.format("[%s] Greetings K8s fans!", id);
-        }
+        ready();
+        health();
+        return String.format("[%s] Greetings K8s fans!", id);
     }
 
     @GetMapping(path = "/health")
     public boolean health() {
-        return healthy;
+        return checkStatus(healthy, String.format("[%s] I'm sick!", id));
     }
 
     @PostMapping(path = "/health")
@@ -38,13 +34,20 @@ public class PingService {
 
     @GetMapping(path = "/ready")
     public boolean ready() {
-        return ready;
+        return checkStatus(ready, String.format("[%s] Dude, I'm busy - leave me alone!", id));
     }
 
     @PostMapping(path = "/ready")
     public String changeReady() {
         ready = !ready;
         return String.format("%s is now: %s", id, ready);
+    }
+
+    private boolean checkStatus(boolean s, String errMsg) {
+        if (!s) {
+            throw new RuntimeException(errMsg);
+        }
+        return s;
     }
 
 }

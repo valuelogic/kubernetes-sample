@@ -1,6 +1,8 @@
 # kubernetes-sample
 
-Sample service for Kubernetes created for presentation.
+Sample service that can be deployed in **Kubernetes** created for **demo purposes**.
+
+Related presentation can be found [here]()!
 
 Project structure:
 
