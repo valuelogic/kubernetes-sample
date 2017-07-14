@@ -1,16 +1,25 @@
-# Binaries for programs and plugins
-*.exe
-*.dll
-*.so
-*.dylib
+target/
+!.mvn/wrapper/maven-wrapper.jar
+.DS_STORE
 
-# Test binary, build with `go test -c`
-*.test
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
 
-# Output of the go coverage tool, specifically when used with LiteIDE
-*.out
-
-# Project-local glide cache, RE: https://github.com/Masterminds/glide/issues/736
-.glide/
+### IntelliJ IDEA ###
 .idea
+*.iws
 *.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/

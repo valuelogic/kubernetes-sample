@@ -1,9 +1,41 @@
 # kubernetes-sample
-Sample service for Kubernetes created for presentation
+
+Sample service for Kubernetes created for presentation.
+
+## Build
+
+1) Build project
+
+```
+mvn clean build
+```
+
+or
+
+```
+mvn clean istall
+```
+
+2) Build and push docker image
+
+```
+mvn clean package docker:build -DpushImage -DpushImageTags -DdockerImageTags=<VERSION>
+```
+
+## Local development
+
+1) Run locally
+
+```
+./run.sh
+```
+
+## DevOps with Kubernetes
+
+Service is prepared to be deployed in Kubernetes.
 
 
 ## Other samples
-
 
 ##### Pod
 

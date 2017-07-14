@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres-secrets
+  labels:
+    db: postgres
+type: Opaque
+data:
+  amq.username: m-wrona
+  amq.password: blackeagle
