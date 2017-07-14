@@ -73,3 +73,10 @@ d) Check logs
 ```
 kubectl logs sample-pod -c nginx-container
 ```
+
+##### Deployment
+
+```
+kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --port=8080
+kubectl expose deployment hello-minikube --type=NodePort
+```
