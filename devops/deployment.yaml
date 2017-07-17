@@ -19,6 +19,13 @@ spec:
         #  value: prod
         ports:
         - containerPort: 8080
+        resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 2000m
+              memory: 512Mi
         livenessProbe:
           httpGet:
             path: /health
@@ -39,7 +46,7 @@ spec:
             #  - name: X-Custom-Header
             #    value: Awesome
           initialDelaySeconds: 30
-          timeoutSeconds: 1
-          periodSeconds: 1
+          timeoutSeconds: 5
+          periodSeconds: 5
           failureThreshold: 3
           successThreshold: 1
