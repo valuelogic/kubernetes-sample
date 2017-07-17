@@ -13,6 +13,8 @@ public class PingService {
     private final UUID id = UUID.randomUUID();
     @Autowired
     private ServiceConfig config;
+    @Autowired
+    private DbConfig dbConfig;
     private boolean healthy = true;
     private boolean ready = true;
 
@@ -21,6 +23,13 @@ public class PingService {
         ready();
         health();
         return String.format("[%s] %s", id, config.getMessage());
+    }
+
+    @GetMapping(path = "/secrets")
+    public String secrets() {
+        ready();
+        health();
+        return String.format("[%s] Can I tell you a secret? Username: %s, password: %s", id, dbConfig.getUsername(), dbConfig.getPassword());
     }
 
     @GetMapping(path = "/probe/health")

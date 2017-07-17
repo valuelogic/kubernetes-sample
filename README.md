@@ -10,6 +10,22 @@ Project structure:
 * `devops`: files related with Kubernetes
 * `others`: other samples for demo purposes
 
+**Demo agenda:**
+
+* deployment 
+* publishing via service
+* rollback & rolling update
+* config/secrets definition & reloading
+
+## API
+
+* **GET** `/hello`: printing sample message using config
+* **GET** `/secrets`: printing sample message using secrets
+* **GET** `/probe/health`: doing health-check
+* **POST** `/probe/health`: changing status of health-check
+* **GET** `/probe/ready`: doing readiness check
+* **POST** `/probe/ready`: changing status of readiness
+
 ## Build
 
 1) Build project

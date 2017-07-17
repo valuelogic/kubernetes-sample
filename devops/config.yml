@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: k8s-java-sample
-  namespace: default
-data:
-  application.yaml: |
-    ping:
-      message: Greetings K8s fans!
