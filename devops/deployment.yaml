@@ -11,10 +11,16 @@ spec:
         app: k8s-java-sample
     spec:
       containers:
-      - name: sample-app
-        image: mwrona/k8s-java-sample:0.0.2
+      - name: k8s-java-sample
+        image: mwrona/k8s-java-sample:0.0.3
         imagePullPolicy: IfNotPresent
-        #env:
+        env:
+          - name: CONFIG
+            valueFrom:
+              fieldRef:
+                fieldPath: "metadata.namespace"
+          - name: "JAVA_OPTS"
+            value: "-Xmx1536m"
         #- name: SPRING_PROFILES_ACTIVE
         #  value: prod
         ports:
@@ -28,7 +34,7 @@ spec:
               memory: 512Mi
         livenessProbe:
           httpGet:
-            path: /health
+            path: /probe/health
             port: 8080
             #httpHeaders:
             #  - name: X-Custom-Header
@@ -40,7 +46,7 @@ spec:
           successThreshold: 1
         readinessProbe:
           httpGet:
-            path: /ready
+            path: /probe/ready
             port: 8080
             #httpHeaders:
             #  - name: X-Custom-Header

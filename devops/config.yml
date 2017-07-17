@@ -1,8 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: service-sample
+  name: k8s-java-sample
   namespace: default
 data:
-  service-sample.yaml: |
-    message: Hello World
+  application.yaml: |
+    ping:
+      message: Greetings K8s fans!
