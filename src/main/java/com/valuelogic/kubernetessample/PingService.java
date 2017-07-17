@@ -11,7 +11,8 @@ import java.util.UUID;
 public class PingService {
 
     private final UUID id = UUID.randomUUID();
-    private final ServiceConfig config;
+    @Autowired
+    private ServiceConfig config;
     private boolean healthy = true;
     private boolean ready = true;
 
@@ -51,8 +52,4 @@ public class PingService {
         return s;
     }
 
-    @Autowired
-    public PingService(ServiceConfig config) {
-        this.config = config;
-    }
 }

@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: k8s-java-sample
-        image: mwrona/k8s-java-sample:0.0.3
+        image: mwrona/k8s-java-sample:0.0.5
         imagePullPolicy: IfNotPresent
         env:
           - name: CONFIG
