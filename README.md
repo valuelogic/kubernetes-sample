@@ -94,6 +94,12 @@ kubectl logs <pod_name> -c <container_name>
 kubectl delete service|deployment <name>
 ```
 
+5) Rollout (provided that `revisionHistoryLimit` > 0)
+
+```
+kubectl rollout undo deployment/<name>
+```
+
 ## Kubernetes - set-up
 
 ### Google Cloud Platform

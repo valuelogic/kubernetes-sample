@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: k8s-java-sample
 spec:
+  revisionHistoryLimit: 1
   replicas: 2
   template:
     metadata:
