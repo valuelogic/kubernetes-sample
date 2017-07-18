@@ -2,7 +2,7 @@
 
 Sample service that can be deployed in **Kubernetes** created for **demo purposes**.
 
-Related presentation can be found [here]()!
+Related presentation can be found [here](https://docs.google.com/a/valuelogic.one/presentation/d/1WQbNJoJuiDIT_EJJDBXixGtrGKE9nbhlMcNiP-dMCPM/edit?usp=sharing)!
 
 Project structure:
 
