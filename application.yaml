@@ -3,3 +3,5 @@ ping:
 db:
   username: None
   password: What?
+monitoring:
+  projectId: inbound-axon-173713

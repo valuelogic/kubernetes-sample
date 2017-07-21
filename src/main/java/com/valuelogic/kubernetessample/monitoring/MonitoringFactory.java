@@ -3,6 +3,7 @@ package com.valuelogic.kubernetessample.monitoring;
 import com.google.cloud.monitoring.v3.MetricServiceClient;
 import com.google.monitoring.v3.ProjectName;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
@@ -13,7 +14,7 @@ public class MonitoringFactory {
     private MetricServiceClient metricServiceClient;
     @Value("monitoring.projectId")
     private String projectId;
-    private  ProjectName name;
+    private ProjectName name;
 
     @PostConstruct
     public void init() throws Exception {
@@ -21,7 +22,12 @@ public class MonitoringFactory {
             throw new RuntimeException("Project ID not set for monitoring");
         }
         metricServiceClient = MetricServiceClient.create();
-        ProjectName name = ProjectName.create(projectId);
+        name = ProjectName.create(projectId);
+    }
+
+    @Bean
+    public Metrics metrics() {
+        return new Metrics(metricServiceClient, name);
     }
 
 

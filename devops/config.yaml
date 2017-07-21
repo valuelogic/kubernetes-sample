@@ -7,3 +7,4 @@ data:
   application.properties: |
     spring.cloud.kubernetes.secrets.paths=/etc/secrets/postgres-secrets
     ping.message: Greetings K8s fans!
+    monitoring.projectId: inbound-axon-173713

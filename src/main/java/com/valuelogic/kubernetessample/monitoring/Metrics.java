@@ -1,10 +1,8 @@
 package com.valuelogic.kubernetessample.monitoring;
 
-// [START monitoring_quickstart]
 import com.google.api.Metric;
 import com.google.api.MonitoredResource;
 
-// Imports the Google Cloud client library
 import com.google.cloud.monitoring.v3.MetricServiceClient;
 
 import com.google.monitoring.v3.CreateTimeSeriesRequest;
@@ -15,23 +13,28 @@ import com.google.monitoring.v3.TimeSeries;
 import com.google.monitoring.v3.TypedValue;
 import com.google.protobuf.util.Timestamps;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class Monitoring {
+public class Metrics {
 
-    private final  MetricServiceClient metricServiceClient;
+    private final MetricServiceClient metricServiceClient;
     private final ProjectName name;
 
-    public void inc() {
-        // Prepares an individual data point
+    private Metric metric(String name) {
+        Map<String, String> metricLabels = new HashMap<String, String>();
+        metricLabels.put("other_label", "monitoring_demo");
+        return Metric.newBuilder()
+                .setType(name)
+                .putAllLabels(metricLabels)
+                .build();
+    }
+
+    private List<Point> points(Date date, double v) {
         TimeInterval interval = TimeInterval.newBuilder()
-                .setEndTime(Timestamps.fromMillis(System.currentTimeMillis()))
+                .setEndTime(Timestamps.fromMillis(date.getTime()))
                 .build();
         TypedValue value = TypedValue.newBuilder()
-                .setDoubleValue(123.45)
+                .setDoubleValue(v)
                 .build();
         Point point = Point.newBuilder()
                 .setInterval(interval)
@@ -40,31 +43,25 @@ public class Monitoring {
 
         List<Point> pointList = new ArrayList<>();
         pointList.add(point);
+        return pointList;
+    }
 
-        ProjectName name = ProjectName.create(projectId);
-
-        // Prepares the metric descriptor
-        Map<String, String> metricLabels = new HashMap<String, String>();
-        metricLabels.put("store_id", "Pittsburg");
-        Metric metric = Metric.newBuilder()
-                .setType("custom.googleapis.com/stores/daily_sales")
-                .putAllLabels(metricLabels)
-                .build();
-
-        // Prepares the monitored resource descriptor
+    private MonitoredResource resource() {
         Map<String, String> resourceLabels = new HashMap<>();
-        resourceLabels.put("project_id", projectId);
-        MonitoredResource resource = MonitoredResource.newBuilder()
+        resourceLabels.put("project_id", name.getProject());
+        return MonitoredResource.newBuilder()
                 .setType("global")
                 .putAllLabels(resourceLabels)
                 .build();
+    }
 
-        // Prepares the time series request
+    public void value(String mName, double mValue) {
         TimeSeries timeSeries = TimeSeries.newBuilder()
-                .setMetric(metric)
-                .setResource(resource)
-                .addAllPoints(pointList)
+                .setMetric(metric(mName))
+                .setResource(resource())
+                .addAllPoints(points(new Date(), mValue))
                 .build();
+
         List<TimeSeries> timeSeriesList = new ArrayList<>();
         timeSeriesList.add(timeSeries);
 
@@ -73,13 +70,11 @@ public class Monitoring {
                 .addAllTimeSeries(timeSeriesList)
                 .build();
 
-        // Writes time series data
         metricServiceClient.createTimeSeries(request);
-
-        System.out.printf("Done writing time series data.%n");
-
-        metricServiceClient.close();
     }
 
-
+    public Metrics(MetricServiceClient metricServiceClient, ProjectName name) {
+        this.metricServiceClient = metricServiceClient;
+        this.name = name;
+    }
 }

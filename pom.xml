@@ -5,7 +5,7 @@
 
     <groupId>com.valuelogic</groupId>
     <artifactId>k8s-java-sample</artifactId>
-    <version>0.0.4</version>
+    <version>0.1.0</version>
     <packaging>jar</packaging>
 
     <name>kubernetes-sample</name>
@@ -36,6 +36,10 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
+        </dependency>
+        <dependency>
             <groupId>io.fabric8</groupId>
             <artifactId>spring-cloud-starter-kubernetes</artifactId>
             <version>0.1.6</version>
@@ -44,6 +48,26 @@
             <groupId>com.google.cloud</groupId>
             <artifactId>google-cloud-monitoring</artifactId>
             <version>0.20.1-alpha</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.auth</groupId>
+            <artifactId>google-auth-library-oauth2-http</artifactId>
+            <version>0.7.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mortbay.jetty.alpn</groupId>
+            <artifactId>jetty-alpn-agent</artifactId>
+            <version>2.0.6</version>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-tcnative-boringssl-static</artifactId>
+            <version>2.0.3.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>20.0</version>
         </dependency>
     </dependencies>
 
