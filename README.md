@@ -138,6 +138,13 @@ gcloud auth application-default login
 gcloud container clusters get-credentials ks8-demo-cluster
 ```
 
+4) Resize number of nodes in cluster
+
+```
+gcloud container clusters resize ks8-demo-cluster --size SIZE
+```
+
+
 ### Azure
 
 ```
