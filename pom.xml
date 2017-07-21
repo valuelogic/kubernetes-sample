@@ -40,6 +40,11 @@
             <artifactId>spring-cloud-starter-kubernetes</artifactId>
             <version>0.1.6</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-monitoring</artifactId>
+            <version>0.20.1-alpha</version>
+        </dependency>
     </dependencies>
 
     <build>
