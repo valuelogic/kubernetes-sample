@@ -10,11 +10,35 @@ spec:
     metadata:
       labels:
         app: k8s-java-sample
+        annotations:
+          pod.beta.kubernetes.io/init-containers: '[
+              {
+                  "name": "setup",
+                  "image": "busybox",
+                  "imagePullPolicy": "IfNotPresent",
+                  "command": ["sh", "-c", "echo \"{\\\"endpoint\\\": \\\"http://$POD_IP:8080/metrics\\\"}\" > /etc/custom-metrics/definition.json"],
+                  "env": [{
+                    "name": "POD_IP",
+                    "valueFrom": {
+                      "fieldRef": {
+                        "apiVersion": "v1",
+                        "fieldPath": "status.podIP"
+                      }
+                    }
+                  }],
+                  "volumeMounts": [
+                      {
+                          "name": "metrics",
+                          "mountPath": "/etc/custom-metrics"
+                      }
+                  ]
+              }
+          ]'
     spec:
       containers:
       - name: k8s-java-sample
-        image: mwrona/k8s-java-sample:0.0.8
-        imagePullPolicy: IfNotPresent
+        image: mwrona/k8s-java-sample:0.1.0.2
+        imagePullPolicy: Always
         env:
           - name: CONFIG
             valueFrom:
@@ -30,12 +54,14 @@ spec:
         - name: postgres-secrets
           readOnly: true
           mountPath: "/etc/secrets/postgres-secrets"
+        - name: metrics
+          mountPath: "/etc/custom-metrics"
         resources:
             requests:
-              cpu: 100m
+              cpu: 500m
               memory: 256Mi
             limits:
-              cpu: 200m
+              cpu: 700m
               memory: 512Mi
         livenessProbe:
           httpGet:
@@ -44,7 +70,7 @@ spec:
             #httpHeaders:
             #  - name: X-Custom-Header
             #    value: Awesome
-          initialDelaySeconds: 120
+          initialDelaySeconds: 30
           timeoutSeconds: 1
           periodSeconds: 5
           failureThreshold: 3
@@ -56,7 +82,7 @@ spec:
             #httpHeaders:
             #  - name: X-Custom-Header
             #    value: Awesome
-          initialDelaySeconds: 120
+          initialDelaySeconds: 30
           timeoutSeconds: 5
           periodSeconds: 5
           failureThreshold: 3
@@ -65,3 +91,5 @@ spec:
         - name: postgres-secrets
           secret:
             secretName: "postgres-secrets"
+        - name: metrics
+          emptyDir:

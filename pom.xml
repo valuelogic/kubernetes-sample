@@ -5,7 +5,7 @@
 
     <groupId>com.valuelogic</groupId>
     <artifactId>k8s-java-sample</artifactId>
-    <version>0.0.4</version>
+    <version>0.1.0</version>
     <packaging>jar</packaging>
 
     <name>kubernetes-sample</name>
