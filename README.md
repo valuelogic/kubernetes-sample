@@ -161,6 +161,10 @@ Check instructions at [KOPS](https://github.com/kubernetes/kops)
 
 ## Monitoring
 
+### Kubernetes custom metrics 
+
+* [Sample project with custom metrics](https://medium.com/@marko.luksa/kubernetes-autoscaling-based-on-custom-metrics-without-using-a-host-port-b783ed6241ac) - not working!!!
+
 ### DataDog
 
 1) Set you API key in `monitoring/datadog/dd-agent.yaml`
