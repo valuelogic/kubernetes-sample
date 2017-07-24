@@ -159,6 +159,26 @@ az acs create
 
 Check instructions at [KOPS](https://github.com/kubernetes/kops)
 
+## Monitoring
+
+### DataDog
+
+1) Set you API key in `monitoring/datadog/dd-agent.yaml`
+
+2) Create daemon set
+
+```
+kubectl create -f monitoring/datadog
+```
+
+### InfluxDB (for auto-scaling)
+
+Check following description:
+
+* [Kapacitor](https://docs.influxdata.com/kapacitor/v1.1/nodes/k8s_autoscale_node/)
+
+* [Sample Kapacitor project with auto-scaling](https://github.com/influxdata/k8s-kapacitor-autoscale)
+
 ## Kubernetes - other samples
 
 ##### Pod
