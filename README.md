@@ -126,7 +126,7 @@ kubectl rollout undo deployment/<name>
 gcloud container clusters create ks8-demo-cluster
 ```
 
-2)Ensure kubectl has authentication credentials:
+2) Ensure kubectl has authentication credentials:
 
 ```
 gcloud auth application-default login
