@@ -167,7 +167,7 @@ Check instructions at [KOPS](https://github.com/kubernetes/kops)
 
 ### DataDog
 
-1) Set you API key in `monitoring/datadog/dd-agent.yaml`
+1) Set your API key in `monitoring/datadog/dd-agent.yaml`
 
 2) Create daemon set
 
